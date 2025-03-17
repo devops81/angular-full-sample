@@ -5,6 +5,12 @@ pipeline {
         NODE_HOME = "${tool 'NodeJsTool'}" // Replace 'NodeJS' with the NodeJS tool name configured in Jenkins
     }
     stages {
+      stage('Clean Workspace') {
+            steps {
+                cleanWs() // This function cleans the workspace
+                echo 'Workspace cleaned successfully!'
+            }
+        }
         stage('Checkout') {
             steps {
                 git branch: 'main', url: 'https://github.com/devops81/angular-full-sample.git' // Replace with your repository URL and branch
