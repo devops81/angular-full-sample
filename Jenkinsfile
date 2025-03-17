@@ -1,0 +1,52 @@
+pipeline {
+    agent any
+ environment {
+        SONARQUBE_SERVER = 'sonarqubeserver' // Replace with your SonarQube server name configured in Jenkins
+        NODE_HOME = "${tool 'NodeJsTool'}" // Replace 'NodeJS' with the NodeJS tool name configured in Jenkins
+    }
+    stages {
+        stage('Checkout') {
+            steps {
+                git branch: 'main', url: 'https://github.com/devops81/angular-full-sample.git' // Replace with your repository URL and branch
+            }
+        }
+       stage('Install Dependencies') {
+            steps {
+                script {
+                    env.PATH = "${NODE_HOME}\\bin;${env.PATH}" // Use double backslashes for Windows paths
+                }
+                bat 'npm install'
+            }
+        }
+
+        stage('Build') {
+            steps {
+                echo 'Building the project...'
+                // Add your build commands here, e.g., `sh 'mvn clean install'`
+            }
+        }
+
+        stage('Test') {
+            steps {
+                echo 'Running tests...'
+                // Add your test commands here, e.g., `sh 'mvn test'`
+            }
+        }
+
+        stage('Deploy') {
+            steps {
+                echo 'Deploying the application...'
+                // Add your deployment commands here
+            }
+        }
+    }
+
+    post {
+        success {
+            echo 'Pipeline succeeded!'
+        }
+        failure {
+            echo 'Pipeline failed!'
+        }
+    }
+}
