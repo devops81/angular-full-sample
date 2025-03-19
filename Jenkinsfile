@@ -20,6 +20,7 @@ pipeline {
             steps {
                 script {
                     env.PATH = "${NODE_HOME}\\bin;${env.PATH}" // Use double backslashes for Windows paths
+                    bat 'npm install core-js@latest'
                     bat 'npm cache clean --force'
                     bat 'npm install'
                 }
