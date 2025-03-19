@@ -20,14 +20,10 @@ pipeline {
             steps {
                 script {
                     env.PATH = "${NODE_HOME}\\bin;${env.PATH}" // Use double backslashes for Windows paths
+                    npm cache clean --force
+                    npm install
                 }
-                
-                bat '''
-               
-                npm cache clean --force
-                npm install
-                '''
-            }
+                            }
         }
 
         stage('Build') {
