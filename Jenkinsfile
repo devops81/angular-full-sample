@@ -21,7 +21,11 @@ pipeline {
                 script {
                     env.PATH = "${NODE_HOME}\\bin;${env.PATH}" // Use double backslashes for Windows paths
                 }
-                bat 'npm install'
+                
+                bat '''
+                'npm install core-js@latest'
+                'npm install'
+                '''
             }
         }
 
