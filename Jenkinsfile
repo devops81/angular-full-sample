@@ -23,8 +23,8 @@ pipeline {
                 }
                 
                 bat '''
-                'npm install core-js@latest'
-                'npm install'
+                npm install core-js@latest
+                npm install
                 '''
             }
         }
