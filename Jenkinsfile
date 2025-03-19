@@ -23,7 +23,8 @@ pipeline {
                 }
                 
                 bat '''
-                npm install core-js@latestnpm cache clean --force
+               
+                npm cache clean --force
                 npm install
                 '''
             }
